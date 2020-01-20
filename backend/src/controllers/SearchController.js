@@ -3,7 +3,7 @@ const parseStringLowerCase = require('../utils/parseStringAsArray');
 
 module.exports = {
   async index(request, response) {
-    console.log(request.query);
+    
     const { latitude, longitude, techs } = request.query;
     const techsArray = parseStringLowerCase(techs);
     const devs = await Dev.find({
