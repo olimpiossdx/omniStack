@@ -1,5 +1,7 @@
 import React from 'react';
 
+import api from './service/api';
+
 // Componente: Bloco isolado de HTML, CSS e JSS, o qual não terfere  no restante da aplicação
 // Propriedade: Informações que um componente PAI passa para o componente FILHO
 // Estado: Informações mantidas pelos componentes (imutabilidade)
@@ -10,132 +12,35 @@ import './App.css';
 import './Sidebar.css';
 import './Main.css';
 
+import DevItem from './Components/DevItem';
+import DevForm from './Components/DevForm';
+
 function App() {
-  const [github_username, setGithub_username] = React.useState('');
-  const [techs, setTechs] = React.useState('');
-  const [latitude, setLatitude] = React.useState('');
-  const [longitude, setLongitude] = React.useState('');
+  const [devs, setDevs] = React.useState([]);
 
   React.useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        console.log(position);
-        const { latitude, longitude } = position.coords;
-        setLatitude(latitude);
-        setLongitude(longitude);
-      }, (err) => {
-        console.log(err);
-      },
-      {
-        timeout: 30000,
-      }
-    );
-
+    async function loadDevs() {
+      const response = await api.get('/devs');
+      setDevs(response.data);
+    }
+    loadDevs();
   }, []);
 
-  async function handleAddDev(e) {
-    e.preventDefatul(); 
-
+  // aplico um post e atualizo alista de devs
+  async function handleAddDev(data) {
+    const response = await api.post('/devs', data);
+    setDevs([...devs, response.data]);
   }
+
   return (<div id="app">
     <aside>
       <strong>Cadastrar</strong>
-      <form onSubmit={handleAddDev}>
-        <div className="input-block">
-          <label htmlFor="github_username">Usuário do Github</label>
-          <input
-            name="github_username"
-            id="github_username"
-            value={github_username}
-            onChange={e => setGithub_username(e.target.value)}
-            required />
-        </div>
-
-        <div className="input-block">
-          <label htmlFor="techs">Tecnologias</label>
-          <input
-            name="techs"
-            id="techs"
-            value={techs}
-            onChange={e => setTechs(e.target.value)}
-            required />
-        </div>
-
-        <div className="input-group">
-          <div className="input-block">
-            <label htmlFor="latitude">Latitude</label>
-            <input
-              type="number"
-              name="latitude"
-              id="latitude"
-              value={latitude}
-              onChange={e => setLatitude(e.target.value)}
-              required
-            />
-          </div>
-          <div className="input-block">
-            <label htmlFor="longitude">Longitude</label>
-            <input
-              type="number"
-              name="longitude"
-              id="longitude"
-              value={longitude}
-              onChange={e => setLongitude(e.target.value)}
-              required
-            />
-          </div>
-        </div>
-
-        <button type="submit">Salvar</button>
-      </form>
+      <DevForm onSubmit={handleAddDev} />
     </aside>
 
     <main>
       <ul>
-        <li className="dev-item">
-          <header>
-            <img src="#" alt="jujé dev" />
-            <div className="user-info">
-              <strong>jujé dev</strong>
-              <span>Reacjs, react Native, Node.js</span>
-            </div>
-          </header>
-          <p>CTO na @zueira.com. Apaixonado pelas melhores zueiras do mercado com grande estilo</p>
-          <a href="http://oi.com.br">Acessar perfil no Github</a>
-        </li>
-        <li className="dev-item">
-          <header>
-            <img src="#" alt="jujé dev" />
-            <div className="user-info">
-              <strong>jujé dev</strong>
-              <span>Reacjs, react Native, Node.js</span>
-            </div>
-          </header>
-          <p>CTO na @zueira.com. Apaixonado pelas melhores zueiras do mercado com grande estilo</p>
-          <a href="#">Acessar perfil no Github</a>
-        </li>
-        <li className="dev-item">
-          <header>
-            <img src="#" alt="jujé dev" />
-            <div className="user-info">
-              <strong>jujé dev</strong>
-              <span>Reacjs, react Native, Node.js</span>
-            </div>
-          </header>
-          <p>CTO na @zueira.com. Apaixonado pelas melhores zueiras do mercado com grande estilo</p>
-          <a href="#">Acessar perfil no Github</a>
-        </li>
-        <li className="dev-item">
-          <header>
-            <img src="#" alt="jujé dev" />
-            <div className="user-info">
-              <strong>jujé dev</strong>
-              <span>Reacjs, react Native, Node.js</span>
-            </div>
-          </header>
-          <p>CTO na @zueira.com. Apaixonado pelas melhores zueiras do mercado com grande estilo</p>
-          <a href="#">Acessar perfil no Github</a>
-        </li>
+        {devs.map(dev => (<DevItem key={dev._id} dev={dev} />))}
       </ul>
     </main>
 
