@@ -2,10 +2,13 @@
 const express = require('express');
 const mongooseDB = require('mongoose');
 const cors = require('cors');
+const http = require('http');
 const routes = require('./routes');
+const { setupWebsocket } = require('./websocket');
 
 const app = express();
-
+const server = http.Server(app);
+setupWebsocket(server);
 
 mongooseDB.connect('mongodb+srv://jujestack:jujerlei@cluster0-wpp59.mongodb.net/week10?retryWrites=true&w=majority', {
     useNewUrlParser: true,
@@ -24,6 +27,6 @@ app.use(routes);
 
 //utilizando MongoDB para gravar os dados da aplicação, por hospedagem 
 
-app.listen(3333);
+server.listen(3333);
 
 
