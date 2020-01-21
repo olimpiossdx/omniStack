@@ -6,12 +6,18 @@ import { requestPermissionsAsync, getCurrentPositionAsync } from 'expo-location'
 import { MaterialIcons } from '@expo/vector-icons';
 
 import api from '../services/api';
+import { conect, discconect, subScribeToNewDevs } from '../services/socket';
+
 
 const Main = ({ navigation }) => {
   const [devs, setDevs] = React.useState([])
   const [currentReagion, setCurrentReagion] = React.useState(null);
   const [techs, setTechs] = React.useState('');
 
+  React.useEffect(() => {
+    subScribeToNewDevs(dev => setDevs([...devs, dev]));
+  }, [devs]);
+  
   React.useEffect(() => {
     async function loadInitialLocation() {
       const { granted } = await requestPermissionsAsync();
@@ -31,6 +37,14 @@ const Main = ({ navigation }) => {
 
   }, []);
 
+  function setupWebsocket() {
+    // discconect();
+
+    const { latitude, longitude } = currentReagion;
+
+    conect(latitude, longitude, techs);
+  }
+
   async function loadDevs() {
     const { latitude, longitude } = currentReagion;
     const response = await api.get('./search', {
@@ -41,10 +55,11 @@ const Main = ({ navigation }) => {
       }
     });
     setDevs(response.data.devs);
+    setupWebsocket();
     console.log(devs)
   }
 
-  function handleRegionChanged(region) { 
+  function handleRegionChanged(region) {
     console.log(region)
     setCurrentReagion(region);
   }
