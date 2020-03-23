@@ -1,0 +1,14 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": ""
+  },
+  "keywords": [],
+  "author": "olimpio",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
