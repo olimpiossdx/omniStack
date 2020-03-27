@@ -38,7 +38,7 @@ const NewIncident = () => {
         <section>
           <img src={logoImg} alt='Be The Hero' />
           <h1>Cdastrar novo caso</h1>
-          <p>Descreva o caso detalhadament para encontar um heróis para resolver isso</p>
+          <p>Descreva o caso detalhadamente para encontar um heróis para resolver isso</p>
 
           <Link className='back-link' to='/profile' >
             <FiArrowLeft size={16} color='#E02041' />
