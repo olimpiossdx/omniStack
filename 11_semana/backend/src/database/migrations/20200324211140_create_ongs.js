@@ -12,5 +12,5 @@ exports.up = function (knex) {
 };
 // responsável por delete/desfazer 
 exports.down = function (knex) {
-  return knex.schema.dropTabke('ongs');
+  return knex.schema.dropTable('ongs');
 };
