@@ -49,7 +49,7 @@ routes.post('/incidents', celebrate({
   [Segments.BODY]: Joi.object().keys({
     title: Joi.string().required(),
     description: Joi.string().required().min(10).max(150),
-    vallue: Joi.number().required()
+    value: Joi.number().required()
   }),
   [Segments.HEADERS]: Joi.object({
     authorization: Joi.string().required()
