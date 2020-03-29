@@ -103,8 +103,6 @@ describe('Incident', () => {
     expect(responseIncident.body.message).toBe('"value" is required');
   });
 
-
-
   it('should be abe to list Incident', async () => {
     const createResponse = await request(app)
       .post('/ongs')
@@ -129,7 +127,5 @@ describe('Incident', () => {
     expect(response.body.length).toBeGreaterThanOrEqual(1);
     expect(response.body.length).toBeLessThan(20);
   });
-
-
 
 });
