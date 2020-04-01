@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="BeTheHero" title="Be the Hero" src=".github/BeTheHero.svg" width="250px" />h
+    <img alt="BeTheHero" title="Be the Hero" src=".github/BeTheHero.svg" width="250px" />
 </h1>
 
 <h4 align="center">
