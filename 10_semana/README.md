@@ -50,8 +50,6 @@ O DevRadar é um projeto que visa conectar desenvolvedores próximos a você que
 
 Você pode baixar o layout do projeto no formato `.png` através [desse link](.github/notebook.png).
 
-Para abrir o arquivo no formato `.sketch` em qualquer sistema operacional utilize a ferramenta [Figma](https://figma.com).
-
 ## Licença
 
 Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
