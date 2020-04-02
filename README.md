@@ -1,5 +1,5 @@
 ## Projetos semana omniStack
-Projetos full-stack com <bold>node de backend, rect, react-native </bold>.
+Projetos com node de backend, rect, react-native.
 
 ## Motivação
 Desenvolvimento de novos projetos com javaScript e aperfeiçoamento.
