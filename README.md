@@ -29,10 +29,8 @@ Desenvolvimento de novos projetos com javaScript e aperfeiçoamento.
 - [React Native](https://facebook.github.io/react-native/)
 - [Expo](https://expo.io/)
 
-## Tests
-Foi adicionado validação de backend na 11_semana.
+## Testes
+Unitários e integrados (11_semana).
 
-Teste unitários e integrados (11_semana).
-
-## License
+## Licença
 Esse projeto está sob a licença MIT © [Olimpio Pimenta](LICENSE.md)
