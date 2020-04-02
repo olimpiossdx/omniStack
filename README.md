@@ -22,7 +22,7 @@ Desenvolvimento de novos projetos com javaScript e aperfeiçoamento.
 ## Screenshots
 
 
-## Tech/framework used
+## Tecnologias
 
 - [Node.js](https://nodejs.org/en/)
 - [React](https://reactjs.org)
